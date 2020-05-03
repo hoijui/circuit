@@ -1,32 +1,26 @@
-<!doctype html><html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link href="css/main.css" rel="stylesheet" type="text/css" />
-		<title>Circuit: Self-managed infrastructure, programmatic monitoring and orchestration</title>
-		<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	</head>
-	<body>
-	
-	<div class="header">
-	<a href="http://gocircuit.org">Circuit</a> Self-managed infrastructure, programmatic monitoring and orchestration
-	</div>
-	<div class="page">
-	
+package main
+
+import (
+	. "github.com/hoijui/circuit/gocircuit.org/render"
+)
+
+func RenderIndexPage() string {
+	figs := A{
+		"FigFacade": RenderFigurePngSvg(
+			"Circuit API provides a dynamic hierarchical view of a compute cluster.", "view", "550px"),
+	}
+	return RenderHtml(
+		"Circuit: Self-managed infrastructure, programmatic monitoring and orchestration",
+		Render(indexBody, figs),
+	)
+}
+
+const indexBody = `
 
 <p>The circuit is a minimal distributed operating system that enables programmatic, reactive control
 over hosts, processes and connections within a compute cluster.
 
-
-	<p><center>
-	<figure class="shadowless">
-		
-		<object data="img/view.svg" type="image/svg+xml" width="550px">
-		<img src="img/view.png" alt="" />
-		</object>
-		<div><em>Circuit API provides a dynamic hierarchical view of a compute cluster.</em></div>
-	</figure>
-	</center></p>
-	
+{{.FigFacade}}
 
 <p>The circuit is unique in one respect: Once a circuit cluster is formed, the circuit system itself cannot 
 fail—only individual hosts can. In contrast, comparable systems 
@@ -109,14 +103,4 @@ the Circuit visit <a href="https://groups.google.com/forum/#!forum/gocircuit-use
 
 <p>
 
-        
-	</div>
-	
-	<div class="footer">
-	The <a href="http://escher.io">Escher</a> and <a href="http://gocircuit.org">Circuit</a> projects are
-	partially supported by the 
-	<a href="http://www.darpa.mil/Our_Work/I2O/Programs/XDATA.aspx">DARPA XData Initiative</a>.<br>
-	Sponsors and partners are welcome and appreciated. Contact <a href="mailto:p@gocircuit.org">Petar Maymounkov</a> for details.
-	</div>
-	</body>
-	</html>
+        `
